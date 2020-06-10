@@ -1,3 +1,3 @@
 # Framework-ZK
 
-Criação do CRUD utilizando o framework ZK. Banco de dados PostegresSQL.
+Criação do CRUD de um Sistema de Controle de estoque, foi utilizando o framework ZK e banco de dados PostegresSQL.
