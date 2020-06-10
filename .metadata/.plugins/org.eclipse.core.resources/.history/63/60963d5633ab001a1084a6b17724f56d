@@ -1,0 +1,6 @@
+package br.edu.pucgo.estoque.modelo;
+import br.edu.pucgo.estoque.modelo.ErroMsg;
+
+public class Login ErroMsg{
+
+}

@@ -1,0 +1,8 @@
+package br.edu.pucgo.estoque.modelo;
+import br.edu.pucgo.estoque.modelo.ErroMsg;
+
+public class Login extends ErroMsg {
+	private int cont_id;
+	private String login;
+	private double senha;
+}

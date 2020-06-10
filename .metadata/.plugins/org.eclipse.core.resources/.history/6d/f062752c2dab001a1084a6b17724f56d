@@ -1,0 +1,249 @@
+package br.edu.pucgo.estoque.controle;
+
+import br.edu.pucgo.estoque.dao.EstoqueDao;
+import br.edu.pucgo.estoque.modelo.Produto;
+import br.edu.pucgo.estoque.util.Utilidade;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
+import org.zkoss.zul.Intbox;
+import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Listcell;
+import org.zkoss.zul.Listitem;
+import org.zkoss.zul.Tab;
+import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
+
+public class EstoqueControle extends SelectorComposer<Window> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Wire
+	Window windowEstoque;
+	@Wire
+	Tab tabCad;
+	@Wire
+	Tab tabPesq;
+	@Wire
+	Intbox intId;
+	@Wire
+	Textbox txtNome;
+	@Wire
+	Textbox txtCodigo;
+	@Wire
+	Textbox txtPrecoCompra;
+	@Wire
+	Textbox txtPrecoVenda;
+	@Wire
+	Textbox txtQtde;
+	@Wire
+	Button btnIncluir;
+	@Wire
+	Button btnAlterar;
+	@Wire
+	Button btnExcluir;
+	@Wire
+	Button btnLimpar;
+	@Wire
+	Textbox txtPesquisa;
+	@Wire
+	Listbox lsbPesquisa;
+	@Wire
+	Button btnLimparLista;
+	@Wire
+	Button btnAtualizarLista;
+
+	public String OPCAO = "";
+
+	@Listen("onCreate=#windowEstoque")
+	public void criaJanela() throws SQLException, InterruptedException, IOException, ClassNotFoundException {
+		this.limpaLsbPesquisa();
+		this.limpaDados();
+	}
+
+	public void limpaLsbPesquisa() {
+		this.lsbPesquisa.getItems().clear();
+	}
+
+	public void limpaDados() throws SQLException, InterruptedException, IOException {
+		OPCAO = "";
+		this.txtCodigo.setText("");
+		this.txtNome.setText("");
+		this.txtPrecoCompra.setText("");
+		this.txtPrecoVenda.setText("");
+		this.txtQtde.setText("");
+		this.txtPesquisa.setText("");
+		this.limpaLsbPesquisa();
+	}
+
+	@Listen("onClick = #btnEntrar")
+	public void onClickbtnEntrar() throws SQLException, InterruptedException, IOException, ClassNotFoundException {
+		OPCAO = "I";
+		EstoqueDao estoqueDAO = new EstoqueDao();
+		Produto produto = new Produto();
+		produto = estoqueDAO.incluir(produto);
+	}
+
+	@Listen("onClick = #tabPesq")
+	public void onclickbtnTelaPesquisa()
+			throws SQLException, InterruptedException, IOException, ClassNotFoundException {
+		this.preencheLsbPesquisa();
+	}
+
+	public void preencheLsbPesquisa() throws SQLException, InterruptedException, IOException, ClassNotFoundException {
+		this.limpaLsbPesquisa();
+		EstoqueDao bdDAO = new EstoqueDao();
+		ArrayList<Produto> al = new ArrayList<Produto>();
+		al = bdDAO.listAll();
+
+		for (int i = 0; i < al.size(); i++) {
+			Listitem li = new Listitem();
+			Listcell lc01 = new Listcell();
+			lc01.setLabel(Integer.toString(al.get(i).getProd_id()));
+
+			Listcell lc02 = new Listcell();
+			lc02.setLabel(al.get(i).getNome());
+
+			Listcell lc03 = new Listcell();
+			lc03.setLabel(Integer.toString(al.get(i).getCodigo()));
+
+			li.appendChild(lc01);
+			li.appendChild(lc02);
+			li.appendChild(lc03);
+			this.lsbPesquisa.appendChild(li);
+		}
+	}
+
+	@Listen("onClick = #btnIncluir")
+	public void onClickbtnIncluir() throws SQLException, InterruptedException, IOException {
+		OPCAO = "I";
+		EstoqueDao estoqueDAO = new EstoqueDao();
+		Produto obj = new Produto();
+		obj.setCodigo(Integer.parseInt(txtCodigo.getValue()));
+		obj.setNome(txtNome.getValue());
+		obj.setPreco_compra(Double.parseDouble(txtPrecoCompra.getValue()));
+		obj.setPreco_venda(Double.parseDouble(txtPrecoVenda.getValue()));
+		obj.setQtde_estoque(Integer.parseInt(txtQtde.getValue()));
+		obj = estoqueDAO.incluir(obj);
+
+		Utilidade.mensagem(obj.getMsgErro());
+
+		this.limpaDados();
+	}
+
+	@Listen("onClick = #btnAlterar")
+	public void onClickbtnAlterar() throws Exception {
+		OPCAO = "A";
+		EstoqueDao estoqueDAO = new EstoqueDao();
+		Produto produto = new Produto();
+		
+		produto = estoqueDAO.buscarProdutoId(Integer.parseInt(txtCodigo.getValue()));
+		intId.setText(Integer.toString(produto.getProd_id()));
+		produto.setProd_id(intId.getValue());
+		produto.setCodigo(Integer.parseInt(txtCodigo.getValue()));
+		produto.setNome(txtNome.getValue());
+		produto.setPreco_compra(Double.parseDouble(txtPrecoCompra.getValue()));
+		produto.setPreco_venda(Double.parseDouble(txtPrecoVenda.getValue()));
+		produto.setQtde_estoque(Integer.parseInt(txtQtde.getValue()));
+		produto = estoqueDAO.alterar(produto);
+		Utilidade.mensagem(produto.getMsgErro());
+		this.limpaDados();
+	}
+	
+	@Listen("onClick = #btnExcluir")
+	public void onClickbtnExcluir() throws Exception {
+		OPCAO = "E";
+		EstoqueDao estoqueDAO = new EstoqueDao();
+		Produto produto = new Produto();
+		
+		produto = estoqueDAO.buscarProdutoId(Integer.parseInt(txtCodigo.getValue()));
+		intId.setText(Integer.toString(produto.getProd_id()));
+		produto.setProd_id(intId.getValue());
+		produto.setCodigo(Integer.parseInt(txtCodigo.getValue()));
+		produto.setNome(txtNome.getValue());
+		produto.setPreco_compra(Double.parseDouble(txtPrecoCompra.getValue()));
+		produto.setPreco_venda(Double.parseDouble(txtPrecoVenda.getValue()));
+		produto.setQtde_estoque(Integer.parseInt(txtQtde.getValue()));
+		produto = estoqueDAO.alterar(produto);
+		Utilidade.mensagem(produto.getMsgErro());
+		this.limpaDados();
+	}
+
+	@Listen("onClick = #btnLimparLista")
+	public void onClickbtnLimparLista() {
+		this.limpaLsbPesquisa();
+	}
+
+	@Listen("onClick = #btnAtualizarLista")
+	public void onclickbtnAtualizarLista()
+			throws SQLException, InterruptedException, IOException, ClassNotFoundException {
+		this.preencheLsbPesquisa();
+	}
+
+	@Listen("onBlur = #txtPesquisa")
+	public void onBlurtxtPesquisa()
+			throws SQLException, InterruptedException, IOException, WrongValueException, ClassNotFoundException {
+		this.limpaLsbPesquisa();
+		EstoqueDao objDao = new EstoqueDao();
+		ArrayList<Produto> al = new ArrayList<Produto>();
+		String aux = "";
+		aux = this.txtPesquisa.getValue();
+		String sql = "";
+		if (aux.length() == 0 || aux.isEmpty() || aux.equals("") || aux == null) {
+			sql = "SELECT * from pessoa order by nome_pessoa";
+		} else {
+			sql = "SELECT * from pessoa where nome_pessoa like '%" + aux + "%' order by nome_pessoa";
+		}
+		al = objDao.listAllSql(sql);
+		if (al != null) {
+			for (int i = 0; i < al.size(); i++) {
+				Listitem li = new Listitem();
+				Listcell lc01 = new Listcell();
+				lc01.setLabel(Integer.toString(al.get(i).getProd_id()));
+
+				Listcell lc02 = new Listcell();
+				lc02.setLabel(al.get(i).getNome());
+
+				Listcell lc03 = new Listcell();
+				lc03.setLabel(Integer.toString(al.get(i).getCodigo()));
+
+				li.appendChild(lc01);
+				li.appendChild(lc02);
+				li.appendChild(lc03);
+				this.lsbPesquisa.appendChild(li);
+			}
+		} else {
+			Utilidade.mensagem("Sem dados para ser visualizados");
+		}
+	}
+
+	@Listen("onSelect = #lsbPesquisa")
+	public void obtemPessoaSelecionada() throws SQLException, ClassNotFoundException, InterruptedException {
+		int indice = this.lsbPesquisa.getSelectedIndex();
+		int x = 0;
+		EstoqueDao objDAO = new EstoqueDao();
+		Produto produto = new Produto();
+		if (indice >= 0) {
+			Listcell lc01 = new Listcell();
+			lc01 = (Listcell) this.lsbPesquisa.getSelectedItem().getChildren().get(0);
+			x = Integer.parseInt(lc01.getLabel().toString());
+			produto = objDAO.buscarPorId(x);
+			if (produto != null) {
+				this.intId.setText(Integer.toString(produto.getProd_id()));
+				this.txtNome.setText(produto.getNome());
+				this.txtCodigo.setText(Integer.toString(produto.getCodigo()));
+				;
+				this.limpaLsbPesquisa();
+				this.txtPesquisa.setText("");
+				this.tabCad.setSelected(true);
+			}
+		}
+	}
+}

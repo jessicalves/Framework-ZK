@@ -1,0 +1,27 @@
+<?page title="Cadastro Usuário" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<window title="Cadastro Usuário" border="normal" width="50%"
+		style="text-align: center">
+
+		<vlayout>
+			<label value="Usuário" width="150px" />
+			<textbox width="250px" tabindex="1" id="txtNomeUsuario" />
+		</vlayout>
+
+
+		<vlayout>
+			<label value="Senha" width="150px" />
+			<textbox type="password" width="250px" tabindex="1"
+				id="txtSenhaUsuario" />
+		</vlayout>
+
+		<vlayout>
+			<space></space>
+			<button type="submit" label="Salvar Cadastro" id="btnSalvarCadastro" />
+			<button style="background-color:#ff0000" label="Cancelar" onClick='execution.sendRedirect("/index.zul")' />
+		</vlayout>
+
+	</window>
+
+</zk>

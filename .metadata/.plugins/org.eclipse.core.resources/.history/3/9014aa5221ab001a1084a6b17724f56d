@@ -1,0 +1,60 @@
+package br.edu.pucgo.estoque.persistencia;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Conexao {
+	
+	private String login = "postgres";
+	private String senha = "123";
+	private String host = "localhost";
+	private String dbName = "Estoque";
+	private String url = "jdbc:postgresql://"+host+"/"+dbName;
+	
+	public Connection conexao = null;
+	
+	public Conexao() {}
+	
+	public Connection getConnection() {
+		try 
+		{
+			Class.forName("org.postgresql.Driver");
+		}
+		catch(ClassNotFoundException ex) {
+			return null;
+		}
+		
+		try 
+		{
+			this.conexao = (Connection) DriverManager.getConnection(url,login,senha);
+		}
+		catch(SQLException ex) {
+			return null;
+		}
+		
+		return this.conexao;
+	}
+	
+	
+	public static void main(String [] args) throws SQLException {
+		Conexao conexao = new Conexao();
+		Connection conn = conexao.getConnection();
+		if(conn == null) {
+			System.out.println("banco falhou");
+		}
+		else {
+			System.out.println(conn);
+//			PreparedStatement stmt;
+//				stmt = conn.prepareStatement("INSERT INTO produto (codigo, nome, preco_compra, preco_venda, qtde_estoque) VALUES(?,?,?,?,?)");
+//				stmt.setInt(1, 8);
+//				stmt.setString(2, "teste");
+//				stmt.setDouble(3, 5);
+//				stmt.setDouble(4, 6);
+//				stmt.setInt(5, 10);
+//				stmt.executeQuery();
+		}
+	}
+	
+}

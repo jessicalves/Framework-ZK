@@ -1,0 +1,37 @@
+<classpath>
+  <container id="ControleEstoque1!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zel.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zel-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zweb.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zweb-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zk.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zk-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zkwebfragment.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zkwebfragment-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zul.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zul-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zkplus-legacy.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zkplus-legacy-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zweb-dsp.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zweb-dsp-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zhtml.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zhtml-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zkplus.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zkplus-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zcommon.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zcommon-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="C:/Users/Jessica/workspaceZK/ControleEstoque1/WebContent/WEB-INF/lib/zkbind.jar">
+      <source-attachment-path>/ZKs/ZKReleases/zkee-bin-eval-9.0.0/libsrc/zkbind-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

@@ -1,0 +1,13 @@
+package br.edu.pucgo.estoque.controle;
+
+import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Textbox;
+
+public class LoginControle {
+	
+	@Wire
+	Textbox txtLogin;
+	@Wire
+	Textbox txtSenha;
+
+}

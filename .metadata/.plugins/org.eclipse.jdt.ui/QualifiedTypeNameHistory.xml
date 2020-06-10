@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="br.edu.pucgo.estoque.dao.LoginDao"/>
+<fullyQualifiedTypeName name="br.edu.pucgo.estoque.modelo.Login"/>
+<fullyQualifiedTypeName name="org.zkoss.zk.ui.Executions"/>
+</qualifiedTypeNameHistroy>

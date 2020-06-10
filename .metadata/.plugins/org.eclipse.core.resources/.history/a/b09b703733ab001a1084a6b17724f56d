@@ -1,0 +1,5 @@
+package br.edu.pucgo.estoque.modelo;
+
+public class Login {
+
+}
